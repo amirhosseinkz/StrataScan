@@ -1,0 +1,6 @@
+#include "Base.xcconfig"
+
+STRATASCAN_ENVIRONMENT = Mock
+STRATASCAN_BUNDLE_IDENTIFIER = com.stratascan.app.mock
+STRATASCAN_API_BASE_URL = stratascan://mock-api/v1
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) DEBUG MOCK

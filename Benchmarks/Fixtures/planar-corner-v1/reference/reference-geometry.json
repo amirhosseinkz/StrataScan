@@ -1,0 +1,15 @@
+{
+  "coordinateFrame": "fixture-local",
+  "units": "meters",
+  "surfaces": [
+    { "id": "floor", "normal": [0, 1, 0], "offset": 0 },
+    { "id": "wall-x", "normal": [1, 0, 0], "offset": 0 },
+    { "id": "wall-z", "normal": [0, 0, 1], "offset": 0 }
+  ],
+  "dimensions": {
+    "width": 2.000,
+    "height": 2.000,
+    "depth": 2.000,
+    "cornerAngleDegrees": 90.000
+  }
+}

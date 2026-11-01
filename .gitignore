@@ -1,0 +1,16 @@
+.DS_Store
+.build/
+DerivedData*/
+.ci/
+__pycache__/
+*.pyc
+*.xcresult
+*.xcarchive
+*.ipa
+xcuserdata/
+*.xcuserstate
+Configuration/Signing.xcconfig
+Configuration/Local.xcconfig
+mock-server/.env
+graphify-out/
+App/Resources/Generated/

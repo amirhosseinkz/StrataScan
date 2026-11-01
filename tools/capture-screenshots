@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+"""Capture English portfolio screenshots through the app's existing UI-test doubles."""
+import argparse
+import hashlib
+import json
+import re
+import shutil
+import subprocess
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--destination", default=None)
+args = parser.parse_args()
+destination = args.destination or subprocess.check_output(
+    ["python3", "tools/simulator-destination"], cwd=ROOT, text=True
+).strip()
+work = ROOT / ".ci" / "portfolio-snapshots"
+work.mkdir(parents=True, exist_ok=True)
+result = work / "Screenshots.xcresult"
+if result.exists():
+    shutil.rmtree(result)
+# Set a clean status bar on the selected simulator without touching user data.
+match = re.search(r"(?:^|,)id=([^,]+)", destination)
+if match:
+    subprocess.run(["xcrun", "simctl", "boot", match[1]], capture_output=True)
+    subprocess.run(["xcrun", "simctl", "bootstatus", match[1], "-b"], check=True,
+                   stdout=subprocess.DEVNULL)
+    subprocess.run(["xcrun", "simctl", "status_bar", match[1], "override", "--time", "9:41",
+                    "--dataNetwork", "wifi", "--wifiMode", "active", "--wifiBars", "3",
+                    "--batteryState", "charged", "--batteryLevel", "100"], check=True)
+try:
+    with (work / "capture.log").open("w") as log:
+        subprocess.run([
+            "xcodebuild", "-project", "StrataScan.xcodeproj", "-scheme", "StrataScan",
+            "-configuration", "Debug", "-destination", destination,
+            "-derivedDataPath", "DerivedData", "-parallel-testing-enabled", "NO",
+            "-resultBundlePath", str(result),
+            "-only-testing:StrataScanUITests/PortfolioSnapshotTests/testEnglishPortfolioSnapshots", "test"
+        ], cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True)
+except subprocess.CalledProcessError:
+    raise SystemExit(f"Screenshot test failed. See {work / 'capture.log'}")
+exported = work / "attachments"
+if exported.exists():
+    shutil.rmtree(exported)
+subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", str(result),
+                "--output-path", str(exported)], check=True, stdout=subprocess.DEVNULL)
+output = ROOT / "docs" / "screenshots"
+output.mkdir(parents=True, exist_ok=True)
+expected = {"01-library", "02-workspace", "03-comparison", "04-settings", "05-empty-library", "06-scanner"}
+images = {}
+for test in json.loads((exported / "manifest.json").read_text()):
+    for attachment in test["attachments"]:
+        name = attachment["suggestedHumanReadableName"]
+        label = next((label for label in expected if name.startswith(label)), None)
+        if label is None:
+            continue
+        source = exported / attachment["exportedFileName"]
+        target = output / f"{label}.png"
+        shutil.copyfile(source, target)
+        images[label] = {"file": target.name, "sha256": hashlib.sha256(target.read_bytes()).hexdigest()}
+if set(images) != expected:
+    raise SystemExit(f"Missing screenshot attachments: {sorted(expected - set(images))}")
+provenance = {
+    "language": "en-US", "source": "XCUITest app screenshots",
+    "content": "Injected deterministic demo data, including synthetic geometry; no physical sensor capture.",
+    "xcode": subprocess.check_output(["xcodebuild", "-version"], text=True).strip(),
+    "images": [images[key] for key in sorted(images)]
+}
+(output / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
+print(f"Captured {len(images)} English screenshots in docs/screenshots/")

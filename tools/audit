@@ -1,0 +1,252 @@
+#!/usr/bin/env python3
+"""Repository health gate for StrataScan.
+
+Structural checks are deliberately deterministic. Product semantics, visual
+quality, privacy suitability, and hardware behavior remain human audit items.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import subprocess
+import sys
+from dataclasses import dataclass
+from datetime import date
+from pathlib import Path
+from typing import Callable
+
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+@dataclass
+class AuditResult:
+    name: str
+    passed: bool
+    detail: str = ""
+    skipped: bool = False
+
+
+def command_result(name: str, command: list[str]) -> AuditResult:
+    completed = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
+    if completed.returncode == 0:
+        return AuditResult(name, True)
+    output = (completed.stderr or completed.stdout).strip().splitlines()
+    detail = output[-1] if output else f"exit code {completed.returncode}"
+    return AuditResult(name, False, detail)
+
+
+def check(name: str, assertion: Callable[[], tuple[bool, str]]) -> AuditResult:
+    try:
+        passed, detail = assertion()
+        return AuditResult(name, passed, detail)
+    except Exception as error:  # Keep audit output actionable rather than crashing.
+        return AuditResult(name, False, f"{type(error).__name__}: {error}")
+
+
+def exists(path: str) -> bool:
+    return (ROOT / path).exists()
+
+
+def documentation_registry_check() -> tuple[bool, str]:
+    required = [
+        "docs/README.md",
+        "docs/PROJECT_STATE.md",
+        "docs/DOCUMENTATION_REGISTRY.md",
+        "docs/FEATURE_REGISTRY.json",
+        "docs/adr/README.md",
+        "docs/audits/README.md",
+        "docs/ai/context-map.md",
+    ]
+    missing = [path for path in required if not exists(path)]
+    return (not missing, f"missing: {', '.join(missing)}" if missing else "")
+
+
+def portfolio_documentation_check() -> tuple[bool, str]:
+    """Public source distributions document features instead of internal governance."""
+    required = [
+        "README.md", "CONTRIBUTING.md", "docs/FEATURES.md", "docs/ARCHITECTURE.md",
+        "docs/screenshots/README.md", "docs/screenshots/provenance.json",
+    ]
+    missing = [path for path in required if not exists(path)]
+    if missing:
+        return False, f"missing: {', '.join(missing)}"
+    import hashlib
+    manifest = json.loads((ROOT / "docs/screenshots/provenance.json").read_text())
+    images = manifest.get("images", [])
+    if len(images) != 6 or manifest.get("language") != "en-US":
+        return False, "expected six English screenshots"
+    for image in images:
+        filename = image["file"]
+        if Path(filename).name != filename:
+            return False, "unsafe screenshot filename"
+        path = ROOT / "docs/screenshots" / filename
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != image["sha256"]:
+            return False, f"screenshot checksum mismatch: {filename}"
+    return True, ""
+
+
+def feature_registry_check() -> tuple[bool, str]:
+    registry = json.loads((ROOT / "docs/FEATURE_REGISTRY.json").read_text(encoding="utf-8"))
+    features = registry.get("features")
+    if not isinstance(features, list) or not features:
+        return False, "features array is empty"
+    missing: list[str] = []
+    for feature in features:
+        name = feature.get("feature", "unnamed")
+        for key in ("specification", "implementationPath", "testPath"):
+            value = feature.get(key)
+            if not isinstance(value, str) or not exists(value):
+                missing.append(f"{name}:{key}")
+    return (not missing, f"missing paths: {', '.join(missing)}" if missing else "")
+
+
+def adr_registry_check() -> tuple[bool, str]:
+    adr_directory = ROOT / "docs/adr"
+    files = sorted(adr_directory.glob("ADR-*.md"))
+    expected = {f"ADR-{number:04d}" for number in range(1, 17)}
+    actual = {path.stem.split("-", 2)[0] + "-" + path.stem.split("-", 2)[1] for path in files}
+    missing = sorted(expected - actual)
+    registry = (adr_directory / "README.md").read_text(encoding="utf-8")
+    unlisted = [name for name in expected if name[-4:] not in registry]
+    details = []
+    if missing:
+        details.append(f"missing files: {', '.join(missing)}")
+    if unlisted:
+        details.append(f"unlisted: {', '.join(unlisted)}")
+    return (not details, "; ".join(details))
+
+
+def markdown_links_check() -> tuple[bool, str]:
+    link_pattern = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+    failures: list[str] = []
+    for document in (ROOT / "docs").rglob("*.md"):
+        text = document.read_text(encoding="utf-8")
+        for raw_target in link_pattern.findall(text):
+            target = raw_target.strip().split(maxsplit=1)[0].split("#", 1)[0]
+            if not target or target.startswith(("http://", "https://", "mailto:", "<")):
+                continue
+            resolved = (document.parent / target).resolve()
+            try:
+                resolved.relative_to(ROOT)
+            except ValueError:
+                failures.append(f"{document.relative_to(ROOT)}:{raw_target}")
+                continue
+            if not resolved.exists():
+                failures.append(f"{document.relative_to(ROOT)}:{raw_target}")
+    return (not failures, f"broken links: {', '.join(failures[:8])}" if failures else "")
+
+
+def project_state_check() -> tuple[bool, str]:
+    state = (ROOT / "docs/PROJECT_STATE.md").read_text(encoding="utf-8")
+    today = date.today().isoformat()
+    if today not in state and "Last reviewed" not in state.lower():
+        return False, f"does not mention current review date {today}"
+    required_headings = ["Current milestone", "Test status", "Known blockers", "Next milestone"]
+    missing = [heading for heading in required_headings if heading.lower() not in state.lower()]
+    return (not missing, f"missing state sections: {', '.join(missing)}" if missing else "")
+
+
+def architecture_rules_check() -> tuple[bool, str]:
+    source_root = ROOT / "Packages/StrataCore/Sources"
+    violations: list[str] = []
+    for path in source_root.rglob("*.swift"):
+        text = path.read_text(encoding="utf-8")
+        if "Task.detached" in text:
+            violations.append(f"detached task: {path.relative_to(ROOT)}")
+        if re.search(r"\b[A-Za-z_][A-Za-z0-9_]*!(?![=])", text):
+            violations.append(f"force unwrap: {path.relative_to(ROOT)}")
+    for path in (ROOT / "App/Sources").glob("*View.swift"):
+        text = path.read_text(encoding="utf-8")
+        if any(token in text for token in ("FileManager", "SQLite3", "URLSession")):
+            violations.append(f"I/O in view: {path.relative_to(ROOT)}")
+    return (not violations, "; ".join(violations[:8]))
+
+
+def configuration_check() -> tuple[bool, str]:
+    production = (ROOT / "Configuration/Production.xcconfig").read_text(encoding="utf-8").lower()
+    if "mock" in production or "stratascan://" in production:
+        return False, "Mock configuration leaked into Production.xcconfig"
+    required = ["Debug.xcconfig", "Mock.xcconfig", "Development.xcconfig", "Staging.xcconfig", "Production.xcconfig"]
+    missing = [name for name in required if not (ROOT / "Configuration" / name).exists()]
+    return (not missing, f"missing: {', '.join(missing)}" if missing else "")
+
+
+def migration_check() -> tuple[bool, str]:
+    source = (ROOT / "Packages/StrataCore/Sources/StrataCore/Storage/SQLiteMetadataStore.swift").read_text(encoding="utf-8")
+    manifest = (ROOT / "Packages/StrataCore/Sources/StrataCore/Storage/ScanModels.swift").read_text(encoding="utf-8")
+    versions = re.findall(r"VALUES \((\d+), \?\)", source)
+    schema_version = re.search(r"currentSchemaVersion = (\d+)", manifest)
+    if not schema_version or schema_version.group(1) not in versions:
+        return False, "manifest schema version has no SQLite migration"
+    return True, ""
+
+
+def api_contract_check() -> tuple[bool, str]:
+    contract = (ROOT / "docs/api/openapi.yaml").read_text(encoding="utf-8")
+    server = ROOT / "mock-server/src/server.js"
+    if not server.exists():
+        return False, "mock server missing"
+    server_text = server.read_text(encoding="utf-8")
+    required_paths = ["/health", "/scans"]
+    missing = [path for path in required_paths if path not in contract or path not in server_text]
+    if missing:
+        return False, f"contract/server mismatch: {', '.join(missing)}"
+    node_check = subprocess.run(["node", "--check", str(server)], cwd=ROOT, capture_output=True, text=True)
+    return (node_check.returncode == 0, node_check.stderr.strip())
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Run StrataScan repository health checks.")
+    parser.add_argument("--lint-only", action="store_true", help="Skip build and test commands.")
+    parser.add_argument("--run-core-tests", action="store_true")
+    parser.add_argument("--run-build", action="store_true")
+    parser.add_argument("--run-ios-tests", action="store_true")
+    parser.add_argument("--portfolio", action="store_true", help="Check public portfolio documentation instead of internal governance registries.")
+    arguments = parser.parse_args()
+
+    results: list[AuditResult] = []
+    if not arguments.lint_only and arguments.run_core_tests:
+        results.append(command_result("Unit Tests", ["swift", "test", "--package-path", "Packages/StrataCore"]))
+    else:
+        results.append(AuditResult("Unit Tests", True, "not requested", skipped=True))
+    if not arguments.lint_only and arguments.run_build:
+        results.append(command_result("Build", ["make", "build"]))
+    else:
+        results.append(AuditResult("Build", True, "not requested", skipped=True))
+    if not arguments.lint_only and arguments.run_ios_tests:
+        results.append(command_result("iOS Simulator Tests", ["make", "test-ios"]))
+    else:
+        results.append(AuditResult("iOS Simulator Tests", True, "not requested", skipped=True))
+
+    documentation_checks = (
+        [check("Public Documentation", portfolio_documentation_check)]
+        if arguments.portfolio else [
+            check("Documentation", documentation_registry_check),
+            check("Feature Registry", feature_registry_check),
+            check("ADR Registry", adr_registry_check),
+            check("Project State", project_state_check),
+        ]
+    )
+    results.extend(documentation_checks)
+    results.extend(
+        [
+            check("Architecture", architecture_rules_check),
+            check("Documentation Links", markdown_links_check),
+            check("API Contract", api_contract_check),
+            check("Database Migrations", migration_check),
+            check("Configuration", configuration_check),
+        ]
+    )
+
+    for result in results:
+        status = "SKIP" if result.skipped else ("PASS" if result.passed else "FAIL")
+        suffix = f" - {result.detail}" if result.detail else ""
+        print(f"{result.name:<24} {status}{suffix}")
+    return 0 if all(result.passed for result in results) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

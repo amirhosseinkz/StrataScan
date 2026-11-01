@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "fixtureID": "staircase-v1",
+  "fixtureVersion": 1,
+  "scene": "staircase",
+  "title": "Measured staircase template",
+  "purpose": "Measure edge retention, tread and riser scale, drift, and vertical completeness.",
+  "privacyClass": "sanitized",
+  "permittedUses": ["internal-quality", "regression-testing", "competitive-evaluation"],
+  "deviceEnvironment": { "deviceModel": "LiDAR-capable iPhone Pro; record exact identifier per run", "operatingSystem": "iOS 18 or later; record exact build per run", "requiredCapabilities": ["lidar", "scene-depth", "world-tracking"] },
+  "lighting": { "description": "Even stairwell illumination; record measured lux per run", "minimumLux": null, "maximumLux": null },
+  "captureProtocol": {
+    "orderedInstructions": ["Start at the lower landing with the first five steps visible.", "Ascend slowly while sweeping both wall and tread edges.", "Revisit at least three lower steps from above before finishing."],
+    "minimumDurationSeconds": 90, "maximumDurationSeconds": 240, "minimumRangeMeters": 0.5, "maximumRangeMeters": 3.5, "requiresRevisit": true
+  },
+  "reference": { "status": "required-before-capture", "method": "direct-measurement", "coordinateFrame": "fixture-local", "uncertaintyNote": "Record tread, riser, width, landing, and total-rise uncertainty before accepting a run.", "measurements": [] },
+  "expectedVisibleRegion": { "coordinateFrame": "fixture-local", "bounds": { "minimum": { "x": -1, "y": -0.5, "z": -1 }, "maximum": { "x": 4, "y": 5, "z": 8 } }, "requiredSurfaceIDs": ["treads", "risers", "landing", "side-wall"] },
+  "assets": [],
+  "fixedCameras": [
+    { "id": "lower-oblique", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 1.5,1.5,5,1] }, "verticalFieldOfViewDegrees": 60, "widthPixels": 1200, "heightPixels": 1600 },
+    { "id": "side-profile", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 5,2,2,1] }, "verticalFieldOfViewDegrees": 55, "widthPixels": 1600, "heightPixels": 1200 }
+  ],
+  "requiredRunArtifacts": ["run.json", "metrics.json", "fixed-views/", "logs/redacted.ndjson", "outputs/checksums.json"]
+}

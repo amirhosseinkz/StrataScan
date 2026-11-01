@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "fixtureID": "known-removable-volume-v1",
+  "fixtureVersion": 1,
+  "scene": "known-removable-volume",
+  "title": "Known removable volume template",
+  "purpose": "Validate registration, signed change, volume, and uncertainty on a controlled before-and-after scene.",
+  "privacyClass": "sanitized",
+  "permittedUses": ["internal-quality", "regression-testing", "competitive-evaluation"],
+  "deviceEnvironment": { "deviceModel": "LiDAR-capable iPhone Pro; record exact identifier per run", "operatingSystem": "iOS 18 or later; record exact build per run", "requiredCapabilities": ["lidar", "scene-depth", "world-tracking"] },
+  "lighting": { "description": "Matched lighting for baseline and follow-up runs", "minimumLux": null, "maximumLux": null },
+  "captureProtocol": {
+    "orderedInstructions": ["Capture the baseline scene including all permanent control surfaces.", "Remove only the measured reference object without moving controls.", "Repeat the same path and revisit all control surfaces."],
+    "minimumDurationSeconds": 90, "maximumDurationSeconds": 240, "minimumRangeMeters": 0.5, "maximumRangeMeters": 3.5, "requiresRevisit": true
+  },
+  "reference": { "status": "required-before-capture", "method": "known-volume", "coordinateFrame": "fixture-local", "uncertaintyNote": "Record object volume, dimensions, placement, and control-point uncertainty before capture.", "measurements": [] },
+  "expectedVisibleRegion": { "coordinateFrame": "fixture-local", "bounds": { "minimum": { "x": -2, "y": -0.5, "z": -2 }, "maximum": { "x": 2, "y": 3, "z": 2 } }, "requiredSurfaceIDs": ["control-left", "control-right", "control-floor", "removable-object"] },
+  "assets": [],
+  "fixedCameras": [
+    { "id": "change-overview", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 2,1.5,4,1] }, "verticalFieldOfViewDegrees": 55, "widthPixels": 1600, "heightPixels": 1200 },
+    { "id": "change-top", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,5,0,1] }, "verticalFieldOfViewDegrees": 60, "widthPixels": 1200, "heightPixels": 1200 }
+  ],
+  "requiredRunArtifacts": ["run.json", "metrics.json", "fixed-views/", "logs/redacted.ndjson", "outputs/checksums.json"]
+}

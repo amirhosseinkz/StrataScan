@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "fixtureID": "low-light-control-v1",
+  "fixtureVersion": 1,
+  "scene": "low-light-control",
+  "title": "Low-light negative control template",
+  "purpose": "Verify truthful capture rejection, degradation reporting, and bounded behavior under poor illumination.",
+  "privacyClass": "sanitized",
+  "permittedUses": ["internal-quality", "regression-testing"],
+  "deviceEnvironment": { "deviceModel": "LiDAR-capable iPhone Pro; record exact identifier per run", "operatingSystem": "iOS 18 or later; record exact build per run", "requiredCapabilities": ["lidar", "scene-depth", "world-tracking"] },
+  "lighting": { "description": "Controlled low-light range measured at the scene", "minimumLux": 1, "maximumLux": 25 },
+  "captureProtocol": {
+    "orderedInstructions": ["Measure and record scene lux before starting.", "Follow the same marked path as the positive control.", "Stop if the app issues a safety or resource warning; retain the diagnostic run."],
+    "minimumDurationSeconds": 45, "maximumDurationSeconds": 120, "minimumRangeMeters": 0.5, "maximumRangeMeters": 3, "requiresRevisit": true
+  },
+  "reference": { "status": "required-before-capture", "method": "direct-measurement", "coordinateFrame": "fixture-local", "uncertaintyNote": "Pair with the measured positive-control geometry and calibrated lux reading.", "measurements": [] },
+  "expectedVisibleRegion": { "coordinateFrame": "fixture-local", "bounds": { "minimum": { "x": -2, "y": -0.5, "z": -2 }, "maximum": { "x": 2, "y": 3, "z": 3 } }, "requiredSurfaceIDs": ["control-floor", "control-wall-a", "control-wall-b"] },
+  "assets": [],
+  "fixedCameras": [
+    { "id": "control-overview", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 1.5,1.5,4,1] }, "verticalFieldOfViewDegrees": 55, "widthPixels": 1600, "heightPixels": 1200 }
+  ],
+  "requiredRunArtifacts": ["run.json", "metrics.json", "fixed-views/", "logs/redacted.ndjson", "outputs/checksums.json"]
+}

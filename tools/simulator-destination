@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+"""Select an available iPhone simulator from the active Xcode installation."""
+import json
+import subprocess
+import sys
+
+inventory = json.loads(subprocess.check_output(
+    ["xcrun", "simctl", "list", "devices", "available", "--json"], text=True
+))
+candidates = []
+for runtime, devices in inventory["devices"].items():
+    if ".iOS-" not in runtime:
+        continue
+    version = tuple(int(part) for part in runtime.split(".iOS-", 1)[1].split("-"))
+    for device in devices:
+        if device.get("isAvailable") and device["name"].startswith("iPhone"):
+            candidates.append((version, device["state"] == "Booted", "Pro" in device["name"], device["name"], device["udid"]))
+if not candidates:
+    sys.exit("No available iPhone simulator. Install an iOS runtime in Xcode Settings > Components.")
+print(f"platform=iOS Simulator,id={max(candidates)[4]}")

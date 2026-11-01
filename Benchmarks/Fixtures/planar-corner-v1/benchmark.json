@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "fixtureID": "planar-corner-v1",
+  "fixtureVersion": 1,
+  "scene": "planar-corner",
+  "title": "Measured three-plane corner",
+  "purpose": "Detect scale, plane, corner-angle, completeness, and fixed-view regressions.",
+  "privacyClass": "sanitized",
+  "permittedUses": ["internal-quality", "regression-testing", "competitive-evaluation", "fixture-distribution"],
+  "deviceEnvironment": {
+    "deviceModel": "LiDAR-capable iPhone Pro; record exact identifier per run",
+    "operatingSystem": "iOS 18 or later; record exact build per run",
+    "requiredCapabilities": ["lidar", "scene-depth", "world-tracking"]
+  },
+  "lighting": { "description": "Diffuse indoor light without direct glare", "minimumLux": 250, "maximumLux": 750 },
+  "captureProtocol": {
+    "orderedInstructions": [
+      "Start 1.5 m from the corner with all three reference surfaces visible.",
+      "Sweep left-to-right at walking pace while keeping 0.6-2.5 m range.",
+      "Change height once and revisit the starting view before finishing."
+    ],
+    "minimumDurationSeconds": 45,
+    "maximumDurationSeconds": 90,
+    "minimumRangeMeters": 0.6,
+    "maximumRangeMeters": 2.5,
+    "requiresRevisit": true
+  },
+  "reference": {
+    "status": "independently-checkable",
+    "method": "direct-measurement",
+    "coordinateFrame": "fixture-local",
+    "uncertaintyNote": "Dimensions are defined by the sanitized analytic reference; physical runs must record instrument uncertainty separately.",
+    "measurements": [
+      { "id": "width", "quantity": "length", "value": 2.0, "unit": "meter", "uncertainty": 0.002, "methodNote": "Horizontal reference span." },
+      { "id": "height", "quantity": "length", "value": 2.0, "unit": "meter", "uncertainty": 0.002, "methodNote": "Vertical reference span." },
+      { "id": "depth", "quantity": "length", "value": 2.0, "unit": "meter", "uncertainty": 0.002, "methodNote": "Orthogonal reference span." },
+      { "id": "corner-angle", "quantity": "angle", "value": 90.0, "unit": "degree", "uncertainty": 0.1, "methodNote": "Analytic angle between reference walls." }
+    ]
+  },
+  "expectedVisibleRegion": {
+    "coordinateFrame": "fixture-local",
+    "bounds": { "minimum": { "x": -0.25, "y": -0.25, "z": -0.25 }, "maximum": { "x": 2.25, "y": 2.25, "z": 2.25 } },
+    "requiredSurfaceIDs": ["floor", "wall-x", "wall-z"]
+  },
+  "assets": [
+    {
+      "role": "reference-geometry",
+      "relativePath": "reference/reference-geometry.json",
+      "mediaType": "application/json",
+      "byteCount": 372,
+      "sha256": "23318f9bfe2333ffdf6accc9a9bf502ca5bc0ef95de210d96a92b474ad765064"
+    }
+  ],
+  "fixedCameras": [
+    { "id": "overview", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 1.5,1.4,3.5,1] }, "verticalFieldOfViewDegrees": 55, "widthPixels": 1200, "heightPixels": 1200 },
+    { "id": "corner-close", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 0.9,1.0,2.2,1] }, "verticalFieldOfViewDegrees": 50, "widthPixels": 1200, "heightPixels": 1200 }
+  ],
+  "requiredRunArtifacts": ["run.json", "metrics.json", "fixed-views/", "logs/redacted.ndjson", "outputs/checksums.json"]
+}

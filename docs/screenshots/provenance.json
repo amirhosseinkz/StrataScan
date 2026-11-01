@@ -1,0 +1,32 @@
+{
+  "language": "en-US",
+  "source": "XCUITest app screenshots",
+  "content": "Injected deterministic demo data, including synthetic geometry; no physical sensor capture.",
+  "xcode": "Xcode 27.0\nBuild version 27A266a",
+  "images": [
+    {
+      "file": "01-library.png",
+      "sha256": "2c28317b368a3954ed412548747b460a552b85fe51be7e3061c89b75d121fb71"
+    },
+    {
+      "file": "02-workspace.png",
+      "sha256": "844bbb9344bb66e36f9acf80f0ff20f7b349c11cce0506fad483cc9f43816184"
+    },
+    {
+      "file": "03-comparison.png",
+      "sha256": "de6ee744717ce36308e828effafbc19626e247dd54b6bc84aff76e69a2cdbf1a"
+    },
+    {
+      "file": "04-settings.png",
+      "sha256": "4578eab05b6e2097d635ac2e8946f3a72b22e33374eef28ad06de4262883a5e6"
+    },
+    {
+      "file": "05-empty-library.png",
+      "sha256": "4b816ab5f5262469187bc0fdaec1b59ad4e65c7c84f96543e9301e0637a5c46d"
+    },
+    {
+      "file": "06-scanner.png",
+      "sha256": "4d8bb646bd16c8ab163ea6f2a697bd4062271777ba6ad3a311c33cf2027a4529"
+    }
+  ]
+}

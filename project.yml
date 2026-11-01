@@ -1,0 +1,105 @@
+name: StrataScan
+
+options:
+  minimumXcodeGenVersion: 2.46.0
+  xcodeVersion: "26.6"
+  projectFormat: xcode16_3
+  deploymentTarget:
+    iOS: "18.0"
+  defaultConfig: Debug
+  createIntermediateGroups: true
+  localPackagesGroup: Packages
+  developmentLanguage: en
+
+configs:
+  Debug: debug
+  Mock: debug
+  Development: debug
+  Staging: release
+  Production: release
+
+configFiles:
+  Debug: Configuration/Debug.xcconfig
+  Mock: Configuration/Mock.xcconfig
+  Development: Configuration/Development.xcconfig
+  Staging: Configuration/Staging.xcconfig
+  Production: Configuration/Production.xcconfig
+
+packages:
+  StrataCore:
+    path: Packages/StrataCore
+
+targets:
+  StrataScan:
+    type: application
+    platform: iOS
+    sources:
+      - path: App/Sources
+      - path: App/Resources
+        buildPhase: resources
+        excludes:
+          - Info.plist
+    settings:
+      base:
+        INFOPLIST_FILE: App/Resources/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        PRODUCT_BUNDLE_IDENTIFIER: $(STRATASCAN_BUNDLE_IDENTIFIER)
+        PRODUCT_NAME: StrataScan
+        DEVELOPMENT_LANGUAGE: en
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+        TARGETED_DEVICE_FAMILY: "1,2"
+    dependencies:
+      - package: StrataCore
+        product: StrataCore
+
+  StrataScanTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests/StrataScanTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: $(STRATASCAN_BUNDLE_IDENTIFIER).tests
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+    dependencies:
+      - target: StrataScan
+      - package: StrataCore
+        product: StrataCore
+
+  StrataScanUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - Tests/StrataScanUITests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: $(STRATASCAN_BUNDLE_IDENTIFIER).uitests
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+    dependencies:
+      - target: StrataScan
+
+schemes:
+  StrataScan:
+    build:
+      targets:
+        StrataScan: all
+        StrataScanTests: [testing]
+        StrataScanUITests: [testing]
+      parallelizeBuild: true
+      buildImplicitDependencies: true
+    run:
+      config: Debug
+      executable: StrataScan
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - StrataScanTests
+        - StrataScanUITests
+    archive:
+      config: Production

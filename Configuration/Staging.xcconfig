@@ -1,0 +1,6 @@
+#include "Base.xcconfig"
+
+STRATASCAN_ENVIRONMENT = Staging
+STRATASCAN_BUNDLE_IDENTIFIER = com.stratascan.app.staging
+STRATASCAN_API_BASE_URL = https://api.staging.invalid/v1
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) STAGING

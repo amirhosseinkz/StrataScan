@@ -1,0 +1,6 @@
+#include "Base.xcconfig"
+
+STRATASCAN_ENVIRONMENT = Production
+STRATASCAN_BUNDLE_IDENTIFIER = com.stratascan.app
+STRATASCAN_API_BASE_URL = https://api.invalid/v1
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) PRODUCTION

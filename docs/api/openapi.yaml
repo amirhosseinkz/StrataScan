@@ -1,0 +1,219 @@
+openapi: 3.1.0
+info:
+  title: StrataScan Remote API
+  version: 1.0.0
+  summary: Versioned contract for deterministic scan metadata synchronization.
+  description: |
+    This v1 contract transfers scan metadata and integrity checksums only. Managed
+    scan packages and binary assets remain local; resumable asset transfer is a
+    future protocol addition. Every upload carries an idempotency key so an
+    interrupted local queue can safely replay the same intent.
+servers:
+  - url: http://127.0.0.1:8080/v1
+    description: Local deterministic mock server
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Check the mock API version and liveness.
+      responses:
+        '200':
+          description: The API is available.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthDTO'
+  /scans:
+    post:
+      operationId: uploadScan
+      summary: Create or conditionally update remote scan metadata.
+      description: |
+        Omit `remoteScanID` to create a remote scan. Supply `remoteScanID` and
+        `expectedRevision` to conditionally update an existing remote scan.
+      security:
+        - bearerAuth: []
+        - {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadScanRequestDTO'
+      responses:
+        '200':
+          description: Existing remote scan metadata was updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadScanResponseDTO'
+        '201':
+          description: Remote scan metadata was created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadScanResponseDTO'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: The expected revision does not match the current remote scan.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteErrorDTO'
+        '429':
+          $ref: '#/components/responses/TemporarilyUnavailable'
+        '500':
+          $ref: '#/components/responses/TemporarilyUnavailable'
+  /scans/{remoteScanID}:
+    parameters:
+      - name: remoteScanID
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 1
+    get:
+      operationId: getScan
+      summary: Retrieve the current remote scan metadata used for conflict resolution.
+      security:
+        - bearerAuth: []
+        - {}
+      responses:
+        '200':
+          description: Current remote scan metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteScanDTO'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+  responses:
+    InvalidRequest:
+      description: The request does not conform to this contract.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RemoteErrorDTO'
+    Unauthorized:
+      description: Authentication is required or no longer valid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RemoteErrorDTO'
+    NotFound:
+      description: No remote scan exists for the requested identifier.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RemoteErrorDTO'
+    TemporarilyUnavailable:
+      description: Retry later using the local queue's deterministic retry policy.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RemoteErrorDTO'
+  schemas:
+    HealthDTO:
+      type: object
+      additionalProperties: false
+      required: [status, apiVersion]
+      properties:
+        status:
+          type: string
+          const: ok
+        apiVersion:
+          type: string
+          const: v1
+    UploadScanRequestDTO:
+      type: object
+      additionalProperties: false
+      required:
+        - idempotencyKey
+        - localScanID
+        - displayName
+        - checksumSHA256
+        - updatedAt
+      properties:
+        idempotencyKey:
+          type: string
+          format: uuid
+          description: Stable key reused when a durable queue replays an interrupted upload.
+        localScanID:
+          type: string
+          format: uuid
+        remoteScanID:
+          type: string
+          minLength: 1
+        displayName:
+          type: string
+          minLength: 1
+          maxLength: 200
+        checksumSHA256:
+          type: string
+          pattern: '^[A-Fa-f0-9]{4,128}$'
+        expectedRevision:
+          type: string
+          minLength: 1
+        updatedAt:
+          type: string
+          format: date-time
+    UploadScanResponseDTO:
+      type: object
+      additionalProperties: false
+      required: [scan, wasCreated]
+      properties:
+        scan:
+          $ref: '#/components/schemas/RemoteScanDTO'
+        wasCreated:
+          type: boolean
+    RemoteScanDTO:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - localScanID
+        - displayName
+        - checksumSHA256
+        - revision
+        - updatedAt
+      properties:
+        id:
+          type: string
+          minLength: 1
+        localScanID:
+          type: string
+          format: uuid
+        displayName:
+          type: string
+          minLength: 1
+          maxLength: 200
+        checksumSHA256:
+          type: string
+          pattern: '^[A-Fa-f0-9]{4,128}$'
+        revision:
+          type: string
+          minLength: 1
+        updatedAt:
+          type: string
+          format: date-time
+    RemoteErrorDTO:
+      type: object
+      additionalProperties: false
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+        currentScan:
+          $ref: '#/components/schemas/RemoteScanDTO'

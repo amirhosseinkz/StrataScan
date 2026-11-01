@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "fixtureID": "low-texture-control-v1",
+  "fixtureVersion": 1,
+  "scene": "low-texture-control",
+  "title": "Low-texture negative control template",
+  "purpose": "Verify tracking, relocalization, and reconstruction behavior on weak visual texture without hiding failure.",
+  "privacyClass": "sanitized",
+  "permittedUses": ["internal-quality", "regression-testing"],
+  "deviceEnvironment": { "deviceModel": "LiDAR-capable iPhone Pro; record exact identifier per run", "operatingSystem": "iOS 18 or later; record exact build per run", "requiredCapabilities": ["lidar", "scene-depth", "world-tracking"] },
+  "lighting": { "description": "Even illumination over untextured control surfaces", "minimumLux": 250, "maximumLux": 750 },
+  "captureProtocol": {
+    "orderedInstructions": ["Begin at the marked textured origin target.", "Traverse the measured untextured surface at walking pace.", "Return to and hold the origin target before finishing."],
+    "minimumDurationSeconds": 60, "maximumDurationSeconds": 150, "minimumRangeMeters": 0.6, "maximumRangeMeters": 3.5, "requiresRevisit": true
+  },
+  "reference": { "status": "required-before-capture", "method": "direct-measurement", "coordinateFrame": "fixture-local", "uncertaintyNote": "Measure surface dimensions and origin target placement before accepting a run.", "measurements": [] },
+  "expectedVisibleRegion": { "coordinateFrame": "fixture-local", "bounds": { "minimum": { "x": -2, "y": -0.5, "z": -1 }, "maximum": { "x": 2, "y": 3, "z": 8 } }, "requiredSurfaceIDs": ["untextured-wall", "floor", "origin-target"] },
+  "assets": [],
+  "fixedCameras": [
+    { "id": "control-origin", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,1.5,-1,1] }, "verticalFieldOfViewDegrees": 60, "widthPixels": 1600, "heightPixels": 1200 }
+  ],
+  "requiredRunArtifacts": ["run.json", "metrics.json", "fixed-views/", "logs/redacted.ndjson", "outputs/checksums.json"]
+}

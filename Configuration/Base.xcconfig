@@ -1,0 +1,10 @@
+// Shared non-secret settings. Signing.xcconfig is optional and intentionally ignored.
+#include? "Signing.xcconfig"
+
+SWIFT_VERSION = 6.0
+IPHONEOS_DEPLOYMENT_TARGET = 18.0
+MARKETING_VERSION = 0.1.0
+CURRENT_PROJECT_VERSION = 1
+STRATASCAN_BUILD_COMMIT = unknown
+CODE_SIGN_STYLE = Automatic
+ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "fixtureID": "corridor-revisit-v1",
+  "fixtureVersion": 1,
+  "scene": "corridor-revisit",
+  "title": "Corridor revisit template",
+  "purpose": "Expose trajectory drift, loop inconsistency, duplicated surfaces, and closure error.",
+  "privacyClass": "sanitized",
+  "permittedUses": ["internal-quality", "regression-testing", "competitive-evaluation"],
+  "deviceEnvironment": { "deviceModel": "LiDAR-capable iPhone Pro; record exact identifier per run", "operatingSystem": "iOS 18 or later; record exact build per run", "requiredCapabilities": ["lidar", "scene-depth", "world-tracking"] },
+  "lighting": { "description": "Stable corridor illumination; record lux at both ends", "minimumLux": null, "maximumLux": null },
+  "captureProtocol": {
+    "orderedInstructions": ["Start at the marked origin facing down the corridor.", "Traverse the full measured path without stopping at featureless walls.", "Return to the origin and hold the original view for five seconds."],
+    "minimumDurationSeconds": 120, "maximumDurationSeconds": 360, "minimumRangeMeters": 0.6, "maximumRangeMeters": 4.5, "requiresRevisit": true
+  },
+  "reference": { "status": "required-before-capture", "method": "survey", "coordinateFrame": "fixture-local", "uncertaintyNote": "Survey endpoints, width, height, and closure markers with recorded uncertainty.", "measurements": [] },
+  "expectedVisibleRegion": { "coordinateFrame": "fixture-local", "bounds": { "minimum": { "x": -2, "y": -0.5, "z": -1 }, "maximum": { "x": 2, "y": 4, "z": 20 } }, "requiredSurfaceIDs": ["left-wall", "right-wall", "floor", "end-wall", "origin-marker"] },
+  "assets": [],
+  "fixedCameras": [
+    { "id": "origin", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,1.5,-1,1] }, "verticalFieldOfViewDegrees": 60, "widthPixels": 1600, "heightPixels": 1200 },
+    { "id": "overhead", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,8,10,1] }, "verticalFieldOfViewDegrees": 65, "widthPixels": 1200, "heightPixels": 1600 }
+  ],
+  "requiredRunArtifacts": ["run.json", "metrics.json", "fixed-views/", "logs/redacted.ndjson", "outputs/checksums.json"]
+}

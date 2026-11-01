@@ -1,0 +1,993 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 90;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0E6065BFF2FD226B5056A6EA /* AppPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47590947A8B2080DDA4A8068 /* AppPresentationTests.swift */; };
+		18EB125A115D769512C0B8D2 /* EnglishFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75524A0938F6C42EB5FD68C /* EnglishFormat.swift */; };
+		1973F5D902E6AF21BAF6D25B /* AppPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666019E7BB4BC9DD07F05612 /* AppPresentation.swift */; };
+		28729F2CBBF01855705762E8 /* StrataScanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C607CED9A9B01D34A2C9896 /* StrataScanUITests.swift */; };
+		3ED3C0FDB91D062CD994D37F /* StrataCore in Frameworks */ = {isa = PBXBuildFile; productRef = 7F5037B70F96A1CA5AC9BE65 /* StrataCore */; };
+		69C11B4CE3A7F8518E0CBEE8 /* PortfolioSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866FDFB4A893AA41F99EDE1 /* PortfolioSnapshotTests.swift */; };
+		972628AA36AFD94A69CCA357 /* ARCameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0C7EB93C7F494B39D16C8 /* ARCameraPreview.swift */; };
+		99F2B785945130767D618A58 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19226186CB42D0E37FDC0FAE /* SettingsView.swift */; };
+		AEEA28046955A378032B7A79 /* ScannerWorkflowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06F054624B0438CC066E179 /* ScannerWorkflowView.swift */; };
+		B68B0F9D2F353FF9BADB27F1 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4592B4381DBC28FBDE5B782D /* LibraryView.swift */; };
+		CB07F31B3F63FCD128ACD185 /* StrataCore in Frameworks */ = {isa = PBXBuildFile; productRef = E5D1260B1D61440DB5AE1080 /* StrataCore */; };
+		CC84DF971F1C5C1A9B878783 /* StrataScanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740A07C5B01E514196A22E13 /* StrataScanApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		20C18F4B7069DA3011750157 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E39992CDC23A6704CDC2F48B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD7DC194E58F6C6BB6E7B459;
+			remoteInfo = StrataScan;
+		};
+		74841489A301A14067833F3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E39992CDC23A6704CDC2F48B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD7DC194E58F6C6BB6E7B459;
+			remoteInfo = StrataScan;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		19226186CB42D0E37FDC0FAE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1E859C4FB51DA3787F62BB4F /* Mock.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Mock.xcconfig; sourceTree = "<group>"; };
+		30E353506B87EBA97519A209 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		3564A62C91E5ED5AF443D8CC /* StrataScanUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = StrataScanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4592B4381DBC28FBDE5B782D /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		47590947A8B2080DDA4A8068 /* AppPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPresentationTests.swift; sourceTree = "<group>"; };
+		4866FDFB4A893AA41F99EDE1 /* PortfolioSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioSnapshotTests.swift; sourceTree = "<group>"; };
+		571AC17491583AE1192C3601 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		666019E7BB4BC9DD07F05612 /* AppPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPresentation.swift; sourceTree = "<group>"; };
+		740A07C5B01E514196A22E13 /* StrataScanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrataScanApp.swift; sourceTree = "<group>"; };
+		956731AB55F081AE02B9AEA9 /* StrataScanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = StrataScanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C607CED9A9B01D34A2C9896 /* StrataScanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrataScanUITests.swift; sourceTree = "<group>"; };
+		D75524A0938F6C42EB5FD68C /* EnglishFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishFormat.swift; sourceTree = "<group>"; };
+		D8274DB57B28BB7001BB2E0A /* StrataScan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = StrataScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D979066AD2C7A7A059ECD579 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		E06F054624B0438CC066E179 /* ScannerWorkflowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerWorkflowView.swift; sourceTree = "<group>"; };
+		F015D5A6BC8FC3DA039FDA1E /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		F3B0C7EB93C7F494B39D16C8 /* ARCameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARCameraPreview.swift; sourceTree = "<group>"; };
+		FEB8AED72EB6935F708F0126 /* StrataCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = StrataCore; path = Packages/StrataCore; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		37479E87DA0EE35A79B45107 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ED3C0FDB91D062CD994D37F /* StrataCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD1DE7C65F98974CDCB017DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB07F31B3F63FCD128ACD185 /* StrataCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C01CF6A4CBEB6CC3CEF7DCC /* StrataScanTests */ = {
+			isa = PBXGroup;
+			children = (
+				47590947A8B2080DDA4A8068 /* AppPresentationTests.swift */,
+			);
+			path = StrataScanTests;
+			sourceTree = "<group>";
+		};
+		32400DA842BE7B8E4816F0F5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				666019E7BB4BC9DD07F05612 /* AppPresentation.swift */,
+				F3B0C7EB93C7F494B39D16C8 /* ARCameraPreview.swift */,
+				D75524A0938F6C42EB5FD68C /* EnglishFormat.swift */,
+				4592B4381DBC28FBDE5B782D /* LibraryView.swift */,
+				E06F054624B0438CC066E179 /* ScannerWorkflowView.swift */,
+				19226186CB42D0E37FDC0FAE /* SettingsView.swift */,
+				740A07C5B01E514196A22E13 /* StrataScanApp.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		51FCFFD46EB4EE060D384364 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8274DB57B28BB7001BB2E0A /* StrataScan.app */,
+				956731AB55F081AE02B9AEA9 /* StrataScanTests.xctest */,
+				3564A62C91E5ED5AF443D8CC /* StrataScanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5648275AF9271B8609C1879A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DCC79932D9477B0A5359E2BB /* Resources */,
+				32400DA842BE7B8E4816F0F5 /* Sources */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6A6AF58DB79B1D43FAEA559B /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				FEB8AED72EB6935F708F0126 /* StrataCore */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		7E8D4EF26E7C02E1B6946EDC /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				D979066AD2C7A7A059ECD579 /* Debug.xcconfig */,
+				F015D5A6BC8FC3DA039FDA1E /* Development.xcconfig */,
+				1E859C4FB51DA3787F62BB4F /* Mock.xcconfig */,
+				571AC17491583AE1192C3601 /* Production.xcconfig */,
+				30E353506B87EBA97519A209 /* Staging.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		9133947213EEDB5DAFF407D9 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0C01CF6A4CBEB6CC3CEF7DCC /* StrataScanTests */,
+				C4E14F89326DBEB258FA2C6D /* StrataScanUITests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		B651EA0D2A9120BD9F5BBDE9 = {
+			isa = PBXGroup;
+			children = (
+				5648275AF9271B8609C1879A /* App */,
+				7E8D4EF26E7C02E1B6946EDC /* Configuration */,
+				6A6AF58DB79B1D43FAEA559B /* Packages */,
+				9133947213EEDB5DAFF407D9 /* Tests */,
+				51FCFFD46EB4EE060D384364 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C4E14F89326DBEB258FA2C6D /* StrataScanUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4866FDFB4A893AA41F99EDE1 /* PortfolioSnapshotTests.swift */,
+				9C607CED9A9B01D34A2C9896 /* StrataScanUITests.swift */,
+			);
+			path = StrataScanUITests;
+			sourceTree = "<group>";
+		};
+		DCC79932D9477B0A5359E2BB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		412ABFA7E47A9DECD1446240 /* StrataScanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DE6EB715D9EFEF8AD46CD88 /* Build configuration list for PBXNativeTarget "StrataScanUITests" */;
+			buildPhases = (
+				D2C62CD99118A3B683781F07 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				812D0BAC5BFF3EADD28C044A /* PBXTargetDependency */,
+			);
+			name = StrataScanUITests;
+			packageProductDependencies = (
+			);
+			productName = StrataScanUITests;
+			productReference = 3564A62C91E5ED5AF443D8CC /* StrataScanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		963E328C1EAFA0D8BE90779C /* StrataScanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE8074B9FCC4D8A4B89E2BB0 /* Build configuration list for PBXNativeTarget "StrataScanTests" */;
+			buildPhases = (
+				38A5DCA13D78798ECC4B69A9 /* Sources */,
+				CD1DE7C65F98974CDCB017DA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E6E5707DB4C18AC159F33C3A /* PBXTargetDependency */,
+			);
+			name = StrataScanTests;
+			packageProductDependencies = (
+				E5D1260B1D61440DB5AE1080 /* StrataCore */,
+			);
+			productName = StrataScanTests;
+			productReference = 956731AB55F081AE02B9AEA9 /* StrataScanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AD7DC194E58F6C6BB6E7B459 /* StrataScan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82D956B50227CBA58531FEB9 /* Build configuration list for PBXNativeTarget "StrataScan" */;
+			buildPhases = (
+				613C4A02E7C9AD0B9B3C3313 /* Sources */,
+				37479E87DA0EE35A79B45107 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StrataScan;
+			packageProductDependencies = (
+				7F5037B70F96A1CA5AC9BE65 /* StrataCore */,
+			);
+			productName = StrataScan;
+			productReference = D8274DB57B28BB7001BB2E0A /* StrataScan.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E39992CDC23A6704CDC2F48B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					412ABFA7E47A9DECD1446240 = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = AD7DC194E58F6C6BB6E7B459;
+					};
+					963E328C1EAFA0D8BE90779C = {
+						ProvisioningStyle = Automatic;
+					};
+					AD7DC194E58F6C6BB6E7B459 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 842852FC417C5F09022CBD87 /* Build configuration list for PBXProject "StrataScan" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B651EA0D2A9120BD9F5BBDE9;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4BACAD2481ABDC9E75D521C7 /* XCLocalSwiftPackageReference "Packages/StrataCore" */,
+			);
+			preferredProjectObjectVersion = 90;
+			productRefGroup = 51FCFFD46EB4EE060D384364 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AD7DC194E58F6C6BB6E7B459 /* StrataScan */,
+				963E328C1EAFA0D8BE90779C /* StrataScanTests */,
+				412ABFA7E47A9DECD1446240 /* StrataScanUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38A5DCA13D78798ECC4B69A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E6065BFF2FD226B5056A6EA /* AppPresentationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		613C4A02E7C9AD0B9B3C3313 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				972628AA36AFD94A69CCA357 /* ARCameraPreview.swift in Sources */,
+				1973F5D902E6AF21BAF6D25B /* AppPresentation.swift in Sources */,
+				18EB125A115D769512C0B8D2 /* EnglishFormat.swift in Sources */,
+				B68B0F9D2F353FF9BADB27F1 /* LibraryView.swift in Sources */,
+				AEEA28046955A378032B7A79 /* ScannerWorkflowView.swift in Sources */,
+				99F2B785945130767D618A58 /* SettingsView.swift in Sources */,
+				CC84DF971F1C5C1A9B878783 /* StrataScanApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2C62CD99118A3B683781F07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69C11B4CE3A7F8518E0CBEE8 /* PortfolioSnapshotTests.swift in Sources */,
+				28729F2CBBF01855705762E8 /* StrataScanUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		812D0BAC5BFF3EADD28C044A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD7DC194E58F6C6BB6E7B459 /* StrataScan */;
+			targetProxy = 74841489A301A14067833F3E /* PBXContainerItemProxy */;
+		};
+		E6E5707DB4C18AC159F33C3A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD7DC194E58F6C6BB6E7B459 /* StrataScan */;
+			targetProxy = 20C18F4B7069DA3011750157 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		10EC1A9114E9357380E8325A /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).uitests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StrataScan;
+			};
+			name = Staging;
+		};
+		123A3971427A276E62CC8433 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D979066AD2C7A7A059ECD579 /* Debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		13DB94871F3F180F18727BA6 /* Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).tests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StrataScan.app/StrataScan";
+			};
+			name = Production;
+		};
+		2D9F0F36499BBB1933A8F265 /* Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).uitests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StrataScan;
+			};
+			name = Mock;
+		};
+		2FC8A43968C446A5A1D0A9E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).tests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StrataScan.app/StrataScan";
+			};
+			name = Debug;
+		};
+		3CEBDB34D03311299910E93A /* Mock */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E859C4FB51DA3787F62BB4F /* Mock.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Mock;
+		};
+		418F4C8C8D6D37D74F097773 /* Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).uitests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StrataScan;
+			};
+			name = Production;
+		};
+		4374C278567512399724ACEC /* Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_LANGUAGE = en;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = StrataScan;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Production;
+		};
+		50B6E633CBFBB5B9027BDE88 /* Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_LANGUAGE = en;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = StrataScan;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Mock;
+		};
+		77327D8151EC470BF5E1B128 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_LANGUAGE = en;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = StrataScan;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		A4B1F1DE58A3A4766B0049D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).uitests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StrataScan;
+			};
+			name = Debug;
+		};
+		A6C465E127D1F3D5DE8A8FFA /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).tests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StrataScan.app/StrataScan";
+			};
+			name = Staging;
+		};
+		AA2C748C2D802919E06779A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_LANGUAGE = en;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = StrataScan;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B134EDCE0877EA3211BE3C65 /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F015D5A6BC8FC3DA039FDA1E /* Development.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Development;
+		};
+		C6DD3F6F3F57F697EB79DFCB /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 571AC17491583AE1192C3601 /* Production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Production;
+		};
+		CE5583D24D36121E5B4A703B /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_LANGUAGE = en;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = StrataScan;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Development;
+		};
+		CEF29A07CDA11C266FD641E4 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).tests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StrataScan.app/StrataScan";
+			};
+			name = Development;
+		};
+		D5A7C72AD01BE1052674080C /* Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).tests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StrataScan.app/StrataScan";
+			};
+			name = Mock;
+		};
+		EF454F7C89B94D07CAA3E979 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(STRATASCAN_BUNDLE_IDENTIFIER).uitests";
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = StrataScan;
+			};
+			name = Development;
+		};
+		FF492C2ABB53CCE1AE3F5C05 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30E353506B87EBA97519A209 /* Staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Staging;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		82D956B50227CBA58531FEB9 /* Build configuration list for PBXNativeTarget "StrataScan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA2C748C2D802919E06779A4 /* Debug */,
+				CE5583D24D36121E5B4A703B /* Development */,
+				50B6E633CBFBB5B9027BDE88 /* Mock */,
+				4374C278567512399724ACEC /* Production */,
+				77327D8151EC470BF5E1B128 /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		842852FC417C5F09022CBD87 /* Build configuration list for PBXProject "StrataScan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				123A3971427A276E62CC8433 /* Debug */,
+				B134EDCE0877EA3211BE3C65 /* Development */,
+				3CEBDB34D03311299910E93A /* Mock */,
+				C6DD3F6F3F57F697EB79DFCB /* Production */,
+				FF492C2ABB53CCE1AE3F5C05 /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8DE6EB715D9EFEF8AD46CD88 /* Build configuration list for PBXNativeTarget "StrataScanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4B1F1DE58A3A4766B0049D5 /* Debug */,
+				EF454F7C89B94D07CAA3E979 /* Development */,
+				2D9F0F36499BBB1933A8F265 /* Mock */,
+				418F4C8C8D6D37D74F097773 /* Production */,
+				10EC1A9114E9357380E8325A /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AE8074B9FCC4D8A4B89E2BB0 /* Build configuration list for PBXNativeTarget "StrataScanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FC8A43968C446A5A1D0A9E2 /* Debug */,
+				CEF29A07CDA11C266FD641E4 /* Development */,
+				D5A7C72AD01BE1052674080C /* Mock */,
+				13DB94871F3F180F18727BA6 /* Production */,
+				A6C465E127D1F3D5DE8A8FFA /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		4BACAD2481ABDC9E75D521C7 /* XCLocalSwiftPackageReference "Packages/StrataCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/StrataCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7F5037B70F96A1CA5AC9BE65 /* StrataCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = StrataCore;
+		};
+		E5D1260B1D61440DB5AE1080 /* StrataCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = StrataCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = E39992CDC23A6704CDC2F48B /* Project object */;
+}

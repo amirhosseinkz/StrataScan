@@ -1,0 +1,28 @@
+name: iOS CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Build, test, and audit
+    runs-on: macos-26
+    timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: /Applications/Xcode.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install project generator
+        run: brew install xcodegen
+      - name: Verify toolchain
+        run: xcodebuild -version
+      - name: Core tests
+        run: make test-core
+      - name: Simulator build
+        run: make build
+      - name: Simulator tests
+        run: make test-ios
+      - name: Repository audit
+        run: python3 tools/audit --portfolio --lint-only

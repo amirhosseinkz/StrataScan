@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "fixtureID": "rough-rock-face-v1",
+  "fixtureVersion": 1,
+  "scene": "rough-rock-face",
+  "title": "Rough rock and rubble face template",
+  "purpose": "Measure rough-surface completeness, noise, edge preservation, and color registration without claiming material identity.",
+  "privacyClass": "sanitized",
+  "permittedUses": ["internal-quality", "regression-testing", "competitive-evaluation"],
+  "deviceEnvironment": { "deviceModel": "LiDAR-capable iPhone Pro; record exact identifier per run", "operatingSystem": "iOS 18 or later; record exact build per run", "requiredCapabilities": ["lidar", "scene-depth", "world-tracking"] },
+  "lighting": { "description": "Recorded diffuse and oblique illumination with no unrecorded relighting", "minimumLux": null, "maximumLux": null },
+  "captureProtocol": {
+    "orderedInstructions": ["Capture the measured face from a frontal position.", "Sweep with overlapping oblique views at two heights.", "Revisit the central reference patch before finishing."],
+    "minimumDurationSeconds": 120, "maximumDurationSeconds": 300, "minimumRangeMeters": 0.5, "maximumRangeMeters": 4, "requiresRevisit": true
+  },
+  "reference": { "status": "required-before-capture", "method": "reference-mesh", "coordinateFrame": "fixture-local", "uncertaintyNote": "Reference mesh and registration uncertainty are mandatory before accepting a run.", "measurements": [] },
+  "expectedVisibleRegion": { "coordinateFrame": "fixture-local", "bounds": { "minimum": { "x": -3, "y": -1, "z": -1 }, "maximum": { "x": 3, "y": 4, "z": 2 } }, "requiredSurfaceIDs": ["rock-face", "reference-patch", "lower-rubble"] },
+  "assets": [],
+  "fixedCameras": [
+    { "id": "front", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,1.5,4,1] }, "verticalFieldOfViewDegrees": 55, "widthPixels": 1600, "heightPixels": 1200 },
+    { "id": "oblique", "fixtureFromCamera": { "columns": [1,0,0,0, 0,1,0,0, 0,0,1,0, 3,1.5,3,1] }, "verticalFieldOfViewDegrees": 55, "widthPixels": 1600, "heightPixels": 1200 }
+  ],
+  "requiredRunArtifacts": ["run.json", "metrics.json", "fixed-views/", "logs/redacted.ndjson", "outputs/checksums.json"]
+}
